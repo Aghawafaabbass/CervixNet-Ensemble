@@ -10,3 +10,4 @@ seaborn
 xgboost
 lightgbm
 catboost
+fpdf
