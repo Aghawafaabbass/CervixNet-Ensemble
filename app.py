@@ -2,14 +2,8 @@ import streamlit as st
 import pandas as pd
 import joblib
 import numpy as np
-import xgboost as xgb
-import lightgbm as lgb
-from catboost import CatBoostClassifier
 
 st.set_page_config(page_title="CervixNet-Ensemble", page_icon="🩺", layout="wide")
-
-# Professional Styling
-st.markdown('<style>.main {background-color: #f8f9fa;}</style>', unsafe_allow_html=True)
 
 st.title("🩺 CervixNet-Ensemble")
 st.subheader("Advanced Cervical Cancer Risk Prediction")
@@ -24,7 +18,7 @@ def load_model():
 model, scaler, threshold = load_model()
 st.sidebar.success("✅ Model Loaded Successfully!")
 
-# Sidebar Inputs
+# Sidebar
 with st.sidebar:
     st.header("📋 Patient Risk Profile")
     age = st.slider("Age", 13, 84, 35)
@@ -36,9 +30,8 @@ with st.sidebar:
     hormonal = st.number_input("Hormonal Contraceptives (years)", 0.0, 30.0, 5.0)
     iud = st.number_input("IUD Usage (years)", 0.0, 20.0, 0.0)
 
-# 1. Create DataFrame with EXACT columns as per Scaler requirement
-# Scaler usually expects the exact same column names in the same order
-input_dict = {
+# 1. Base Features
+data = {
     'Age': age,
     'Number of sexual partners': partners,
     'First sexual intercourse': first_sex,
@@ -51,35 +44,44 @@ input_dict = {
     'IUD': 1 if iud > 0 else 0,
     'IUD (years)': iud,
     'STDs': 1 if stds == "Yes" else 0,
-    'STDs (number)': 1 if stds == "Yes" else 1 if stds == "Yes" else 0,
+    'STDs (number)': 1 if stds == "Yes" else 0,
 }
 
-input_df = pd.DataFrame([input_dict])
+df = pd.DataFrame([data])
 
-# 2. Add Engineered Features (Ensure these were in your training set)
-input_df['Age_at_First_Sex'] = input_df['First sexual intercourse']
-input_df['Sexual_Partners_per_Pregnancy'] = input_df['Number of sexual partners'] / (input_df['Num of pregnancies'] + 1)
-input_df['Smoking_Intensity'] = input_df['Smokes (years)'] * input_df['Smokes (packs/year)']
-input_df['Hormonal_Exposure'] = input_df['Hormonal Contraceptives (years)'] + input_df['IUD (years)']
+# 2. Add ALL missing STD columns (Setting them to 0 as default)
+missing_std_cols = [
+    'STDs:condylomatosis', 'STDs:cervical condylomatosis', 'STDs:vaginal condylomatosis',
+    'STDs:vulvo-perineal condylomatosis', 'STDs:syphilis', 'STDs:pelvic inflammatory disease',
+    'STDs:genital herpes', 'STDs:molluscum contagiosum', 'STDs:AIDS', 'STDs:HIV',
+    'STDs:Hepatitis B', 'STDs:HPV', 'STDs: Number of diagnosis', 'STDs: Time since first diagnosis',
+    'STDs: Time since last diagnosis'
+]
+for col in missing_std_cols:
+    df[col] = 0
 
-# IMPORTANT: Sklearn's check_feature_names is failing. 
-# We must ensure the column order matches the training data.
-# Re-ordering columns to match what the scaler expects:
+# 3. Engineered Features
+df['Age_at_First_Sex'] = df['First sexual intercourse']
+df['Sexual_Partners_per_Pregnancy'] = df['Number of sexual partners'] / (df['Num of pregnancies'] + 1)
+df['Smoking_Intensity'] = 0.0
+df['Hormonal_Exposure'] = hormonal + iud
+
+# 4. Final Alignment with Scaler
 try:
-    expected_features = scaler.feature_names_in_
-    input_df = input_df[expected_features]
-except:
-    pass
-
-# Prediction logic
-try:
-    input_scaled = scaler.transform(input_df)
-    # Handle the probability output (extracting the float)
-    proba_array = model.predict_proba(input_scaled)
-    proba = proba_array[0][1] if len(proba_array[0]) > 1 else proba_array[0][0]
+    # Scaler se columns ka sahi order lein
+    expected_cols = scaler.feature_names_in_
+    # Jo columns hamare paas nahi hain unhe 0 se fill karein
+    for col in expected_cols:
+        if col not in df.columns:
+            df[col] = 0
+            
+    final_df = df[expected_cols]
+    
+    # Prediction
+    input_scaled = scaler.transform(final_df)
+    proba = model.predict_proba(input_scaled)[0][1]
     prediction = 1 if proba >= threshold else 0
 
-    # Show Result
     st.subheader("🧬 Prediction Result")
     if prediction == 1:
         st.error(f"⚠️ HIGH RISK DETECTED (Probability: {proba:.1%})")
@@ -87,5 +89,4 @@ try:
         st.success(f"✅ LOW RISK (Probability: {proba:.1%})")
         
 except Exception as e:
-    st.error(f"Prediction Error: {e}")
-    st.info("Check if the model and scaler column names match.")
+    st.error(f"Feature Error: {e}")
