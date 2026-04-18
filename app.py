@@ -1,9 +1,12 @@
-
+%%writefile app.py
 import streamlit as st
 import pandas as pd
 import joblib
 import shap
 import matplotlib.pyplot as plt
+import xgboost as xgb
+import lightgbm as lgb
+from catboost import CatBoostClassifier
 
 st.set_page_config(
     page_title="CervixNet-Ensemble",
@@ -29,6 +32,7 @@ st.caption("Stacked Meta-Learning MLOps Pipeline | Explainable AI")
 # Load Model
 @st.cache_resource
 def load_model():
+    # Make sure these files exist in your GitHub repo!
     model = joblib.load('CervixNet_Ensemble_Final.pkl')
     scaler = joblib.load('scaler.pkl')
     threshold = joblib.load('best_threshold.pkl')
@@ -52,7 +56,7 @@ with st.sidebar:
     hormonal = st.number_input("Hormonal Contraceptives (years)", 0.0, 30.0, 5.0, step=0.1)
     iud = st.number_input("IUD Usage (years)", 0.0, 20.0, 0.0, step=0.1)
 
-# Prepare Data
+# Prepare Data (Matching Training Features)
 input_data = pd.DataFrame([{
     'Age': age,
     'Number of sexual partners': partners,
@@ -101,9 +105,13 @@ st.metric("Decision Threshold", f"{threshold:.2f}")
 
 # SHAP Visualization
 st.subheader("🔍 Feature Contribution (SHAP)")
-explainer = shap.TreeExplainer(model.estimators_[0])
-shap_values = explainer.shap_values(input_scaled)
-fig = shap.force_plot(explainer.expected_value, shap_values[0], input_data.iloc[0], matplotlib=True, show=False)
-st.pyplot(fig)
+try:
+    # Stacked models usually have estimators_
+    explainer = shap.TreeExplainer(model.estimators_[0])
+    shap_values = explainer.shap_values(input_scaled)
+    fig = shap.force_plot(explainer.expected_value, shap_values[0], input_data.iloc[0], matplotlib=True, show=False)
+    st.pyplot(fig)
+except Exception as e:
+    st.warning("SHAP explanation not available for this model type.")
 
 st.info("Model: Stacked Ensemble (XGBoost + LightGBM + CatBoost + RF) | CV F1: 95.94%")

@@ -7,3 +7,6 @@ Pillow
 shap
 matplotlib
 seaborn
+xgboost
+lightgbm
+catboost
