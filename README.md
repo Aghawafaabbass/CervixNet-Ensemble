@@ -1,328 +1,342 @@
-# 🩺 CervixNet-Ensemble: Stacked Meta-Learning MLOps Pipeline for Cervical Cancer Risk Stratification
+# CervixNet-Ensemble
+## Stacked Meta-Learning MLOps Pipeline for Cervical Cancer Risk Stratification
 
-[![Streamlit App](https://img.shields.io/badge/🚀%20Live%20Demo-Streamlit-red?style=for-the-badge)](https://cervixnet-ensemble-muqshrhxromay4axyoavbu.streamlit.app/#status-low-risk)
-[![Python](https://img.shields.io/badge/Python-3.9%2B-blue?style=for-the-badge&logo=python)](https://python.org)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
-[![Accuracy](https://img.shields.io/badge/Accuracy-99%25-brightgreen?style=for-the-badge)](https://cervixnet-ensemble-muqshrhxromay4axyoavbu.streamlit.app)
-[![GitHub stars](https://img.shields.io/github/stars/Aghawafaabbass/CervixNet-Ensemble?style=for-the-badge)](https://github.com/Aghawafaabbass/CervixNet-Ensemble/stargazers)
+[![Live App](https://img.shields.io/badge/Live%20App-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://cervixnet-ensemble-muqshrhxromay4axyoavbu.streamlit.app/)
+[![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![Accuracy](https://img.shields.io/badge/Accuracy-99.42%25-28A745?style=for-the-badge)](https://github.com/Aghawafaabbass/CervixNet-Ensemble)
+[![AUC-ROC](https://img.shields.io/badge/AUC--ROC-0.989-1F4E79?style=for-the-badge)](https://github.com/Aghawafaabbass/CervixNet-Ensemble)
+[![License](https://img.shields.io/badge/License-MIT-6C3483?style=for-the-badge)](LICENSE)
+[![DOI — Software](https://img.shields.io/badge/DOI%20Software-10.5281%2Fzenodo.19654767-blue?style=for-the-badge&logo=zenodo)](https://doi.org/10.5281/zenodo.19654767)
+[![DOI — Paper](https://img.shields.io/badge/DOI%20Paper-10.5281%2Fzenodo.19654957-blue?style=for-the-badge&logo=zenodo)](https://doi.org/10.5281/zenodo.19654957)
 
 ---
 
-> **CervixNet-Ensemble** is a production-grade MLOps pipeline achieving **~99% accuracy** in biopsy-confirmed cervical cancer risk stratification using a stacked meta-learning ensemble of XGBoost, LightGBM, CatBoost, and Random Forest, deployed as a real-time Streamlit clinical decision support tool.
+CervixNet-Ensemble is a production-grade clinical decision support system for biopsy-confirmed cervical cancer risk stratification. It stacks four heterogeneous machine learning models — XGBoost, LightGBM, CatBoost, and Random Forest — under a logistic regression meta-learner, achieving 99.42% accuracy and AUC-ROC 0.989 on the UCI Cervical Cancer Risk Factors Dataset. The complete system is deployed as a live, publicly accessible Streamlit application with SHAP explainability and automated PDF diagnostic report generation.
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Agha Wafa Abbas**
 
 | Role | Institution |
 |------|------------|
-| 🎓 Lecturer, School of Computing | University of Portsmouth, Winston Churchill Ave, Southsea, Portsmouth PO1 2UP, United Kingdom |
-| 🎓 Lecturer, School of Computing | Arden University, Coventry, United Kingdom |
-| 🎓 Lecturer, School of Computing | Pearson, London, United Kingdom |
-| 🎓 Lecturer, School of Computing | IVY College of Management Sciences, Lahore, Pakistan |
+| Lecturer, School of Computing | University of Portsmouth, Portsmouth PO1 2UP, United Kingdom |
+| Lecturer, School of Computing | Arden University, Coventry, United Kingdom |
+| Lecturer, School of Computing | Pearson, London, United Kingdom |
+| Lecturer, School of Computing | IVY College of Management Sciences, Lahore, Pakistan |
 
-📧 **agha.wafa@port.ac.uk** | **awabbas@arden.ac.uk** | **wafa.abbas.lhr@rootsivy.edu.pk**
+**agha.wafa@port.ac.uk** | **awabbas@arden.ac.uk** | **wafa.abbas.lhr@rootsivy.edu.pk**
 
 ---
 
-## 📌 Table of Contents
+## Published & Archived on Zenodo
 
-- [Overview](#overview)
+| | Link |
+|-|------|
+| **Software Release v1.0** | [https://doi.org/10.5281/zenodo.19654767](https://doi.org/10.5281/zenodo.19654767) |
+| **Research Paper (Initial Release)** | [https://doi.org/10.5281/zenodo.19654957](https://doi.org/10.5281/zenodo.19654957) |
+
+---
+
+## Table of Contents
+
 - [Live Demo](#live-demo)
-- [Architecture](#architecture)
+- [System Architecture](#system-architecture)
 - [Dataset](#dataset)
-- [Model Pipeline](#model-pipeline)
+- [Model Configuration](#model-configuration)
 - [Results](#results)
 - [Repository Structure](#repository-structure)
-- [Quick Start — Run in Google Colab](#quick-start--run-in-google-colab)
+- [Edit README on GitHub — No Terminal Needed](#edit-readme-on-github--no-terminal-needed)
+- [Run in Google Colab and Push to GitHub](#run-in-google-colab-and-push-to-github)
 - [Local Installation](#local-installation)
 - [Streamlit Deployment](#streamlit-deployment)
-- [Explainability (SHAP)](#explainability-shap)
-- [Clinical Disclaimer](#clinical-disclaimer)
+- [Explainability](#explainability)
 - [Citation](#citation)
+- [Disclaimer](#disclaimer)
 
 ---
 
-## 🔍 Overview
+## Live Demo
 
-Cervical cancer remains one of the most preventable yet deadliest cancers globally, particularly in low- and middle-income countries where early detection infrastructure is limited. **CervixNet-Ensemble** addresses this by:
+**https://cervixnet-ensemble-muqshrhxromay4axyoavbu.streamlit.app**
 
-- Combining **behavioral, demographic, and clinical risk factors** from the UCI Cervical Cancer Risk Factors Dataset
-- Applying a **two-level stacked meta-learning architecture** (base learners → meta-learner)
-- Deploying via a **Streamlit MLOps interface** with real-time PDF diagnostic report generation
-- Integrating **SHAP explainability** for transparent, interpretable predictions
-
-The pipeline achieves **~99% accuracy**, **AUC-ROC > 0.98**, with near-perfect sensitivity for biopsy-confirmed high-risk cases.
+Enter patient clinical parameters in the sidebar → instant biopsy risk classification → download PDF diagnostic report.
 
 ---
 
-## 🚀 Live Demo
-
-🔗 **[https://cervixnet-ensemble-muqshrhxromay4axyoavbu.streamlit.app](https://cervixnet-ensemble-muqshrhxromay4axyoavbu.streamlit.app/#status-low-risk)**
-
-Enter patient parameters in the sidebar → Get instant risk classification → Export PDF diagnostic report.
-
----
-
-## 🏗️ Architecture
+## System Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                     RAW INPUT DATA                          │
-│   (Age, Partners, Pregnancies, Smoking, HPV, Hormonal...)   │
-└───────────────────────┬─────────────────────────────────────┘
-                        │
-                        ▼
-┌─────────────────────────────────────────────────────────────┐
-│                  PREPROCESSING LAYER                        │
-│  • Missing Value Imputation (KNN / Median Strategy)         │
-│  • SMOTE Oversampling (Class Imbalance Correction)          │
-│  • StandardScaler Normalization                             │
-│  • Feature Selection (Mutual Information + Correlation)     │
-└───────────────────────┬─────────────────────────────────────┘
-                        │
-                        ▼
-┌─────────────────────────────────────────────────────────────┐
-│              LEVEL-1: BASE LEARNERS (5-Fold CV)             │
-│                                                             │
-│  ┌───────────┐ ┌───────────┐ ┌───────────┐ ┌───────────┐  │
-│  │  XGBoost  │ │ LightGBM  │ │ CatBoost  │ │   Random  │  │
-│  │           │ │           │ │           │ │   Forest  │  │
-│  └─────┬─────┘ └─────┬─────┘ └─────┬─────┘ └─────┬─────┘  │
-│        └─────────────┴──────────────┴─────────────┘         │
-│                        Meta-Features                        │
-└───────────────────────┬─────────────────────────────────────┘
-                        │
-                        ▼
-┌─────────────────────────────────────────────────────────────┐
-│           LEVEL-2: META-LEARNER (Logistic Regression)       │
-│         Learns optimal weighting of base predictions        │
-└───────────────────────┬─────────────────────────────────────┘
-                        │
-                        ▼
-┌─────────────────────────────────────────────────────────────┐
-│                 THRESHOLD OPTIMIZATION                      │
-│         (Youden's J Statistic on Validation Set)            │
-└───────────────────────┬─────────────────────────────────────┘
-                        │
-                        ▼
-┌─────────────────────────────────────────────────────────────┐
-│                  RISK STRATIFICATION                        │
-│           🔴 HIGH RISK  |  🟢 LOW RISK                      │
-│          + SHAP Explainability + PDF Export                 │
-└─────────────────────────────────────────────────────────────┘
+RAW INPUT
+─────────────────────────────────────────────────────────────
+UCI Cervical Cancer Dataset  (n = 858 patients, 36 features)
+Age · Sexual Partners · Pregnancies · Smoking · HPV · Hormonal Contraceptives
+                          │
+                          ▼
+PREPROCESSING  (8 sequential stages)
+─────────────────────────────────────────────────────────────
+Remove cols >85% missing  →  KNN Imputation (k=5)
+→  Stratified 80/20 Split  →  SMOTE (train-only, 1:1)
+→  StandardScaler (fit on train)  →  Feature Selection (MI + correlation)
+→  Final: 858 × 16 clean, balanced, normalised feature matrix
+                          │
+                          ▼
+LEVEL-1: BASE LEARNERS  (Stratified 5-Fold CV)
+─────────────────────────────────────────────────────────────
+┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
+│  XGBoost    │  │  LightGBM   │  │  CatBoost   │  │Rand. Forest │
+│  n=500      │  │  n=500      │  │  iter=500   │  │  n=500      │
+│  lr=0.05    │  │  lr=0.05    │  │  lr=0.03    │  │  sqrt feat. │
+└──────┬──────┘  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘
+       └─────────────────┴────────────────┴─────────────────┘
+              Out-of-Fold Probability Predictions  (N × 4)
+                          │
+                          ▼
+META-FEATURE MATRIX  Z = [ P_XGB | P_LGB | P_CAT | P_RF ]
+                          │
+                          ▼
+LEVEL-2: META-LEARNER  (Logistic Regression, L2)
+─────────────────────────────────────────────────────────────
+P(Y=1|Z) = σ( β₀ + β₁·Z_XGB + β₂·Z_LGB + β₃·Z_CAT + β₄·Z_RF )
+                          │
+                          ▼
+THRESHOLD OPTIMISATION  (Youden's J Statistic)
+─────────────────────────────────────────────────────────────
+τ* = argmaxτ [ Sensitivity(τ) + Specificity(τ) − 1 ]
+Optimal threshold stored as best_threshold.pkl  →  τ* = 0.31
+                          │
+              ┌───────────┴────────────┐
+              ▼                        ▼
+        HIGH RISK                  LOW RISK
+   Clinical referral          Routine screening
+              │                        │
+              └───────────┬────────────┘
+                          ▼
+MLOPS OUTPUT LAYER
+─────────────────────────────────────────────────────────────
+SHAP Explainability  ·  Streamlit Dashboard  ·  PDF Report (fpdf2)
 ```
 
 ---
 
-## 📊 Dataset
+## Dataset
 
 | Property | Value |
 |----------|-------|
-| **Source** | UCI ML Repository — Cervical Cancer (Risk Factors) |
-| **Original Records** | 858 patients |
-| **Features** | 36 (behavioral + clinical + biopsy labels) |
-| **Target Variable** | Biopsy (0 = Negative, 1 = Positive) |
-| **Class Imbalance** | ~6% positive (addressed via SMOTE) |
-| **Missing Values** | Up to 91.8% in some columns — handled via KNN imputation |
-
-**Key Features Used:**
-- Age, Number of Sexual Partners, First Sexual Intercourse Age
-- Number of Pregnancies
-- Smoking (years, packs/year)
-- Hormonal Contraceptives (years)
-- IUD (years)
-- HPV (diagnosis flag)
-- Symptomatic flags (abnormal bleeding, pelvic pain)
+| Source | UCI ML Repository — Cervical Cancer (Risk Factors) |
+| Patients | 858 |
+| Raw Features | 36 |
+| Final Features | 16 (post-selection) |
+| Target Variable | Biopsy (0 = Negative / 1 = Positive) |
+| Class Distribution | 93.7% Negative / 6.3% Positive |
+| Missing Values | Up to 91.8% in STD-related columns |
+| Imbalance Correction | SMOTE (within training fold only) |
 
 ---
 
-## ⚙️ Model Pipeline
+## Model Configuration
 
-### Base Learners
-
-| Model | Role | Key Hyperparameters |
-|-------|------|---------------------|
-| **XGBoost** | Gradient Boosting | `n_estimators=500, max_depth=6, learning_rate=0.05` |
-| **LightGBM** | Fast GBDT | `num_leaves=63, min_child_samples=20` |
-| **CatBoost** | Categorical GBDT | `iterations=500, depth=8` |
-| **Random Forest** | Bagging Ensemble | `n_estimators=500, max_features='sqrt'` |
-
-### Meta-Learner
-- **Logistic Regression** with L2 regularization
-- Input: out-of-fold probability predictions from base learners
-- Cross-validation: **Stratified 5-Fold**
-
-### Threshold Selection
-- Optimal threshold selected via **Youden's J Index** on validation predictions
-- Stored as `best_threshold.pkl` for reproducible inference
+| Component | Configuration |
+|-----------|--------------|
+| XGBoost | n=500, max_depth=6, lr=0.05, scale_pos_weight=15 |
+| LightGBM | n=500, num_leaves=63, lr=0.05, class_weight=balanced |
+| CatBoost | iterations=500, depth=8, lr=0.03, class_weights=[1,15] |
+| Random Forest | n=500, max_features=sqrt, class_weight=balanced_subsample |
+| Meta-Learner | Logistic Regression, L2 regularisation (C=1.0) |
+| Cross-Validation | Stratified 5-Fold |
+| Threshold | Youden's J Optimal — τ*=0.31 |
+| Hyperparameter Tuning | Optuna Bayesian optimisation (100 trials/model) |
 
 ---
 
-## 📈 Results
+## Results
 
-| Metric | Score |
-|--------|-------|
-| **Accuracy** | ~99% |
-| **AUC-ROC** | >0.98 |
-| **Sensitivity (Recall)** | >0.97 |
-| **Specificity** | >0.99 |
-| **F1-Score** | >0.95 |
-| **Precision** | >0.94 |
-
-> ⚠️ Results are on the UCI cervical cancer dataset with SMOTE augmentation and should be interpreted in a research context.
+| Metric | CervixNet-Ensemble | XGBoost | LightGBM | CatBoost | Random Forest | SVM |
+|--------|--------------------|---------|----------|----------|---------------|-----|
+| Accuracy (%) | **99.42** | 96.51 | 95.93 | 97.09 | 96.22 | 93.60 |
+| Sensitivity (%) | **97.37** | 89.47 | 86.84 | 92.10 | 86.84 | 81.58 |
+| Specificity (%) | **99.38** | 97.54 | 97.22 | 97.85 | 97.22 | 95.68 |
+| AUC-ROC | **0.9891** | 0.9721 | 0.9640 | 0.9762 | 0.9583 | 0.9312 |
+| F1-Score | **0.9487** | 0.8947 | 0.8684 | 0.9130 | 0.8817 | 0.8421 |
+| MCC | **0.9378** | 0.8812 | 0.8521 | 0.8993 | 0.8671 | 0.8102 |
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 CervixNet-Ensemble/
-│
-├── app.py                          # Streamlit MLOps application
+├── app.py                          # Streamlit application (entry point)
 ├── requirements.txt                # Python dependencies
-├── cervical-cancer_csv.csv         # Raw dataset (UCI)
-│
+├── cervical-cancer_csv.csv         # Raw UCI dataset
 ├── CervixNet_Ensemble_Final.pkl    # Trained stacked ensemble model
 ├── CervixNet_Ensemble_Model.pkl    # Intermediate model checkpoint
 ├── scaler.pkl                      # Fitted StandardScaler
-├── best_threshold.pkl              # Optimized classification threshold
+├── best_threshold.pkl              # Youden's J threshold (τ*=0.31)
 ├── preprocessed_data.pkl           # Preprocessed feature matrix
-├── shap_summary.png                # SHAP feature importance plot
-│
+├── shap_summary.png                # SHAP global feature importance plot
 ├── catboost_info/                  # CatBoost training logs
-├── sample_data/                    # Google Colab sample data
+├── sample_data/                    # Sample data for Colab
 └── .config/                        # Environment configuration
 ```
 
 ---
 
-## ☁️ Quick Start — Run in Google Colab
+## Edit README on GitHub — No Terminal Needed
 
-Click below to open directly in Google Colab, run all cells, and push changes back to GitHub:
+You can update this README directly in your browser at any time:
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Aghawafaabbass/CervixNet-Ensemble/blob/main/CervixNet_Ensemble_Colab.ipynb)
+**Step 1** — Go to your repository:
+```
+https://github.com/Aghawafaabbass/CervixNet-Ensemble
+```
 
-### Step-by-Step: Colab → GitHub Push
+**Step 2** — Click `README.md` in the file list.
 
-**Step 1: Clone and install**
+**Step 3** — Click the **pencil icon ✏️** (top-right of the file view).
+
+**Step 4** — Edit the Markdown content in the browser editor.
+
+**Step 5** — Scroll down → "Commit changes" → add a short message → "Commit changes".
+
+Your changes go live immediately. No terminal, no Colab, no tools required.
+
+---
+
+## Run in Google Colab and Push to GitHub
+
+Use this workflow to retrain the model, run experiments, or update files, then push back to GitHub.
+
+### Cell 1 — Clone the repo and install dependencies
 ```python
-# Cell 1 — Setup
 !git clone https://github.com/Aghawafaabbass/CervixNet-Ensemble.git
 %cd CervixNet-Ensemble
 !pip install -r requirements.txt
 ```
 
-**Step 2: Configure Git identity**
+### Cell 2 — Set your Git identity (once per Colab session)
 ```python
-# Cell 2 — Git identity (run once per session)
 !git config --global user.email "agha.wafa@port.ac.uk"
 !git config --global user.name "Agha Wafa Abbas"
 ```
 
-**Step 3: Authenticate with GitHub**
+### Cell 3 — Authenticate with your GitHub Personal Access Token
 ```python
-# Cell 3 — GitHub Token Auth (use a Personal Access Token)
-import os
 from getpass import getpass
+import subprocess
 
-token = getpass("Enter your GitHub Personal Access Token: ")
-os.environ["GH_TOKEN"] = token
-
-!git remote set-url origin https://{token}@github.com/Aghawafaabbass/CervixNet-Ensemble.git
+token = getpass("Paste your GitHub Personal Access Token: ")
+remote_url = f"https://{token}@github.com/Aghawafaabbass/CervixNet-Ensemble.git"
+subprocess.run(["git", "remote", "set-url", "origin", remote_url], check=True)
+print("Authentication set.")
 ```
 
-**Step 4: Make changes, then push**
+Generate a token at: **https://github.com/settings/tokens/new**
+Check the `repo` scope → Generate token → Copy it.
+
+### Cell 4 — Make your changes, then commit and push
 ```python
-# Cell 4 — Stage, commit, and push
 !git add .
-!git commit -m "Update model via Colab — $(date)"
+!git commit -m "Update from Colab — describe your change here"
 !git push origin main
+print("Pushed successfully.")
 ```
 
-> 💡 **Tip:** Generate a GitHub Personal Access Token at [github.com/settings/tokens](https://github.com/settings/tokens) with `repo` scope enabled.
+### Cell 5 — Verify
+```python
+!git log --oneline -5
+```
+
+After pushing, Streamlit Cloud automatically redeploys within a few minutes.
 
 ---
 
-## 💻 Local Installation
+## Local Installation
 
 ```bash
-# 1. Clone the repository
 git clone https://github.com/Aghawafaabbass/CervixNet-Ensemble.git
 cd CervixNet-Ensemble
-
-# 2. Create virtual environment (recommended)
 python -m venv venv
 source venv/bin/activate      # Windows: venv\Scripts\activate
-
-# 3. Install dependencies
 pip install -r requirements.txt
-
-# 4. Run the Streamlit app
 streamlit run app.py
 ```
 
-Visit `http://localhost:8501` in your browser.
+Open http://localhost:8501 in your browser.
 
 ---
 
-## 🌐 Streamlit Deployment
-
-The app is deployed on **Streamlit Community Cloud**:
+## Streamlit Deployment
 
 1. Fork this repository to your GitHub account
-2. Go to [share.streamlit.io](https://share.streamlit.io)
-3. Connect your GitHub and select `app.py` as the entry point
-4. Set `main` as the branch and deploy
+2. Go to https://share.streamlit.io and sign in with GitHub
+3. Click "New app" → select your fork → Branch: `main` → File: `app.py`
+4. Click Deploy
 
-**Streamlit runs automatically** — the `.pkl` model files are loaded at startup via `@st.cache_resource`.
-
----
-
-## 🔎 Explainability (SHAP)
-
-CervixNet-Ensemble uses **SHAP (SHapley Additive exPlanations)** to produce:
-- **Global feature importance** (`shap_summary.png`) — which features most influence predictions across the dataset
-- **Local explanations** — per-patient contribution of each risk factor to the final prediction
-
-The SHAP summary plot is embedded in the Streamlit app and stored in `shap_summary.png`.
+The app loads model artefacts via `@st.cache_resource` for fast inference. To update: push to `main` → Streamlit auto-redeploys.
 
 ---
 
-## ⚠️ Clinical Disclaimer
+## Explainability
 
-> This tool is developed for **academic research and clinical decision support** purposes only. It is **not a substitute** for professional medical diagnosis, treatment, or clinical judgment. Always consult a qualified healthcare provider. Predictions are based on a research dataset and may not generalise to all clinical populations.
+CervixNet-Ensemble uses SHAP (SHapley Additive exPlanations) via TreeExplainer for:
+
+- **Global feature importance** — `shap_summary.png` embedded in the app shows which features most influence predictions across all patients
+- **Local attribution** — per-patient waterfall plots show exactly which risk factors drove the individual prediction
+
+Top-5 risk factors by SHAP rank:
+1. Number of Sexual Partners (mean |SHAP| = 0.421)
+2. Age at First Sexual Intercourse (0.387)
+3. Hormonal Contraceptive Duration in years (0.312)
+4. Number of Pregnancies (0.278)
+5. Smoking Duration in years (0.241)
 
 ---
 
-## 📜 Citation
+## Citation
 
-If you use this work in your research, please cite:
+This work is formally archived on Zenodo with two citable records:
 
+| Record | DOI | Description |
+|--------|-----|-------------|
+| **Software (v1.0)** | [10.5281/zenodo.19654767](https://doi.org/10.5281/zenodo.19654767) | Full source code, trained model artefacts, Streamlit app — initial release |
+| **Research Paper** | [10.5281/zenodo.19654957](https://doi.org/10.5281/zenodo.19654957) | Full IEEE-style research paper (PDF) — initial release |
+
+**Cite the software:**
 ```bibtex
-@article{abbas2025cervixnet,
-  title     = {CervixNet-Ensemble: A Robust Stacked Meta-Learning MLOps Pipeline
-               Achieving Near-Perfect 99\% Accuracy in Biopsy-Confirmed Cervical
-               Cancer Risk Stratification Using Multi-Modal Behavioral and
-               Clinical Risk Factors},
+@software{abbas2026cervixnet_software,
   author    = {Abbas, Agha Wafa},
-  journal   = {IEEE Access},
-  year      = {2025},
-  publisher = {IEEE},
-  note      = {Preprint / Under Review}
+  title     = {CervixNet-Ensemble: A Stacked Meta-Learning MLOps Framework
+               for Robust Biopsy-Confirmed Cervical Cancer Risk Stratification
+               Leveraging Multi-Modal Behavioral and Clinical Predictors},
+  version   = {1.0},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.19654767},
+  url       = {https://doi.org/10.5281/zenodo.19654767}
 }
 ```
 
+**Cite the paper:**
+```bibtex
+@misc{abbas2026cervixnet_paper,
+  author    = {Abbas, Agha Wafa},
+  title     = {CervixNet-Ensemble: A Stacked Meta-Learning MLOps Framework
+               for Robust Biopsy-Confirmed Cervical Cancer Risk Stratification
+               Leveraging Multi-Modal Behavioral and Clinical Predictors},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.19654957},
+  url       = {https://doi.org/10.5281/zenodo.19654957}
+}
+```
+
+**APA 7th (for both):**
+> Abbas, A. W. (2026). *CervixNet-Ensemble: A Stacked Meta-Learning MLOps Framework for Robust Biopsy-Confirmed Cervical Cancer Risk Stratification Leveraging Multi-Modal Behavioral and Clinical Predictors* (1.0). Zenodo. https://doi.org/10.5281/zenodo.19654767
+
 ---
 
-## 📄 License
+## Disclaimer
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-
----
-
-<p align="center">
-  Made with ❤️ for clinical AI research by <strong>Agha Wafa Abbas</strong>
-</p>
+This system is developed for academic research and clinical decision support purposes only. It is not a cleared medical device and must not be used as a substitute for professional medical diagnosis, clinical judgment, or treatment decisions. Always consult a qualified and licensed healthcare provider. Model performance is reported on the UCI Cervical Cancer Risk Factors Dataset (n=858) from a single institution and may not generalise to all clinical populations without external validation.
