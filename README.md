@@ -6,8 +6,8 @@
 [![Accuracy](https://img.shields.io/badge/Accuracy-99.42%25-28A745?style=for-the-badge)](https://github.com/Aghawafaabbass/CervixNet-Ensemble)
 [![AUC-ROC](https://img.shields.io/badge/AUC--ROC-0.989-1F4E79?style=for-the-badge)](https://github.com/Aghawafaabbass/CervixNet-Ensemble)
 [![License](https://img.shields.io/badge/License-MIT-6C3483?style=for-the-badge)](LICENSE)
-[![DOI Software](https://img.shields.io/badge/DOI%20Software-10.5281%2Fzenodo.19654767-024EC2?style=for-the-badge&logo=zenodo&logoColor=white)](https://doi.org/10.5281/zenodo.19654767)
-[![DOI Paper](https://img.shields.io/badge/DOI%20Paper-10.5281%2Fzenodo.19654957-024EC2?style=for-the-badge&logo=zenodo&logoColor=white)](https://doi.org/10.5281/zenodo.19654957)
+[![DOI Software](https://img.shields.io/badge/DOI%20Software-10.5281%2Fzenodo.19654767-024EC2?style=for-the-badge&logo=zenodo&logoColor=white)](https://doi.org/10.5281/zenodo.19654957)   
+[![DOI Paper](https://img.shields.io/badge/DOI%20Paper-10.5281%2Fzenodo.19654957-024EC2?style=for-the-badge&logo=zenodo&logoColor=white)](https://doi.org/10.5281/zenodo.19654767)
 
 ---
 
@@ -317,10 +317,13 @@ This work is formally archived on Zenodo with two separate citable records:
 ---
 
 **APA 7th — Software (code + artefacts):**
-> Abbas, A. W. (2026). *CervixNet-Ensemble: A Stacked Meta-Learning MLOps Framework for Robust Biopsy-Confirmed Cervical Cancer Risk Stratification Leveraging Multi-Modal Behavioral and Clinical Predictors* (Version 1.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.19654767
+> Abbas, A. W. (2026). *CervixNet-Ensemble: A Stacked Meta-Learning MLOps Framework for Robust Biopsy-Confirmed Cervical Cancer Risk Stratification Leveraging Multi-Modal Behavioral and Clinical Predictors* (Version 1.0) [Software]. Zenodo.
+https://doi.org/10.5281/zenodo.19654957
 
 **APA 7th — Research Paper:**
-> Abbas, A. W. (2026). *CervixNet-Ensemble: A Stacked Meta-Learning MLOps Framework for Robust Biopsy-Confirmed Cervical Cancer Risk Stratification Leveraging Multi-Modal Behavioral and Clinical Predictors* [Research paper]. Zenodo. https://doi.org/10.5281/zenodo.19654957
+> Abbas, A. W. (2026). *CervixNet-Ensemble: A Stacked Meta-Learning MLOps Framework for Robust Biopsy-Confirmed Cervical Cancer Risk Stratification Leveraging Multi-Modal Behavioral and Clinical Predictors* [Research paper]. Zenodo.
+https://doi.org/10.5281/zenodo.19654767
+
 
 ---
 
