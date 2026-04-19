@@ -47,7 +47,6 @@ CervixNet-Ensemble is a production-grade clinical decision support system for bi
 - [Model Configuration](#model-configuration)
 - [Results](#results)
 - [Repository Structure](#repository-structure)
-- [Edit README on GitHub — No Terminal Needed](#edit-readme-on-github--no-terminal-needed)
 - [Run in Google Colab and Push to GitHub](#run-in-google-colab-and-push-to-github)
 - [Local Installation](#local-installation)
 - [Streamlit Deployment](#streamlit-deployment)
