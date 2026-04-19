@@ -6,8 +6,8 @@
 [![Accuracy](https://img.shields.io/badge/Accuracy-99.42%25-28A745?style=for-the-badge)](https://github.com/Aghawafaabbass/CervixNet-Ensemble)
 [![AUC-ROC](https://img.shields.io/badge/AUC--ROC-0.989-1F4E79?style=for-the-badge)](https://github.com/Aghawafaabbass/CervixNet-Ensemble)
 [![License](https://img.shields.io/badge/License-MIT-6C3483?style=for-the-badge)](LICENSE)
-[![DOI — Software](https://img.shields.io/badge/DOI%20Software-10.5281%2Fzenodo.19654767-blue?style=for-the-badge&logo=zenodo)](https://doi.org/10.5281/zenodo.19654767)
-[![DOI — Paper](https://img.shields.io/badge/DOI%20Paper-10.5281%2Fzenodo.19654957-blue?style=for-the-badge&logo=zenodo)](https://doi.org/10.5281/zenodo.19654957)
+[![DOI Software](https://img.shields.io/badge/DOI%20Software-10.5281%2Fzenodo.19654767-024EC2?style=for-the-badge&logo=zenodo&logoColor=white)](https://doi.org/10.5281/zenodo.19654767)
+[![DOI Paper](https://img.shields.io/badge/DOI%20Paper-10.5281%2Fzenodo.19654957-024EC2?style=for-the-badge&logo=zenodo&logoColor=white)](https://doi.org/10.5281/zenodo.19654957)
 
 ---
 
@@ -32,10 +32,10 @@ CervixNet-Ensemble is a production-grade clinical decision support system for bi
 
 ## Published & Archived on Zenodo
 
-| | Link |
-|-|------|
-| **Software Release v1.0** | [https://doi.org/10.5281/zenodo.19654767](https://doi.org/10.5281/zenodo.19654767) |
-| **Research Paper (Initial Release)** | [https://doi.org/10.5281/zenodo.19654957](https://doi.org/10.5281/zenodo.19654957) |
+| What | DOI Link |
+|------|----------|
+| **Software / Source Code — v1.0** (model artefacts, Streamlit app, code) | [https://doi.org/10.5281/zenodo.19654767](https://doi.org/10.5281/zenodo.19654767) |
+| **Research Paper — Initial Release** (full IEEE-style manuscript PDF) | [https://doi.org/10.5281/zenodo.19654957](https://doi.org/10.5281/zenodo.19654957) |
 
 ---
 
@@ -187,10 +187,7 @@ CervixNet-Ensemble/
 
 You can update this README directly in your browser at any time:
 
-**Step 1** — Go to your repository:
-```
-https://github.com/Aghawafaabbass/CervixNet-Ensemble
-```
+**Step 1** — Go to: `https://github.com/Aghawafaabbass/CervixNet-Ensemble`
 
 **Step 2** — Click `README.md` in the file list.
 
@@ -232,8 +229,7 @@ subprocess.run(["git", "remote", "set-url", "origin", remote_url], check=True)
 print("Authentication set.")
 ```
 
-Generate a token at: **https://github.com/settings/tokens/new**
-Check the `repo` scope → Generate token → Copy it.
+Generate a token at: **https://github.com/settings/tokens/new** — check the `repo` scope → Generate → Copy.
 
 ### Cell 4 — Make your changes, then commit and push
 ```python
@@ -296,14 +292,16 @@ Top-5 risk factors by SHAP rank:
 
 ## Citation
 
-This work is formally archived on Zenodo with two citable records:
+This work is formally archived on Zenodo with two separate citable records:
 
-| Record | DOI | Description |
-|--------|-----|-------------|
-| **Software (v1.0)** | [10.5281/zenodo.19654767](https://doi.org/10.5281/zenodo.19654767) | Full source code, trained model artefacts, Streamlit app — initial release |
-| **Research Paper** | [10.5281/zenodo.19654957](https://doi.org/10.5281/zenodo.19654957) | Full IEEE-style research paper (PDF) — initial release |
+| Record | DOI | What it contains |
+|--------|-----|-----------------|
+| **Software v1.0** | [10.5281/zenodo.19654767](https://doi.org/10.5281/zenodo.19654767) | Source code, trained model `.pkl` artefacts, Streamlit app |
+| **Research Paper** | [10.5281/zenodo.19654957](https://doi.org/10.5281/zenodo.19654957) | Full IEEE-style research paper (PDF) |
 
-**Cite the software:**
+---
+
+**Cite the software (code + model artefacts):**
 ```bibtex
 @software{abbas2026cervixnet_software,
   author    = {Abbas, Agha Wafa},
@@ -318,7 +316,9 @@ This work is formally archived on Zenodo with two citable records:
 }
 ```
 
-**Cite the paper:**
+---
+
+**Cite the research paper:**
 ```bibtex
 @misc{abbas2026cervixnet_paper,
   author    = {Abbas, Agha Wafa},
@@ -332,8 +332,13 @@ This work is formally archived on Zenodo with two citable records:
 }
 ```
 
-**APA 7th (for both):**
-> Abbas, A. W. (2026). *CervixNet-Ensemble: A Stacked Meta-Learning MLOps Framework for Robust Biopsy-Confirmed Cervical Cancer Risk Stratification Leveraging Multi-Modal Behavioral and Clinical Predictors* (1.0). Zenodo. https://doi.org/10.5281/zenodo.19654767
+---
+
+**APA 7th — Software (code + artefacts):**
+> Abbas, A. W. (2026). *CervixNet-Ensemble: A Stacked Meta-Learning MLOps Framework for Robust Biopsy-Confirmed Cervical Cancer Risk Stratification Leveraging Multi-Modal Behavioral and Clinical Predictors* (Version 1.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.19654767
+
+**APA 7th — Research Paper:**
+> Abbas, A. W. (2026). *CervixNet-Ensemble: A Stacked Meta-Learning MLOps Framework for Robust Biopsy-Confirmed Cervical Cancer Risk Stratification Leveraging Multi-Modal Behavioral and Clinical Predictors* [Research paper]. Zenodo. https://doi.org/10.5281/zenodo.19654957
 
 ---
 
