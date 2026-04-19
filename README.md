@@ -34,8 +34,8 @@ CervixNet-Ensemble is a production-grade clinical decision support system for bi
 
 | What | DOI Link |
 |------|----------|
-| **Software / Source Code — v1.0** (model artefacts, Streamlit app, code) | [https://doi.org/10.5281/zenodo.19654767](https://doi.org/10.5281/zenodo.19654767) |
-| **Research Paper — Initial Release** (full IEEE-style manuscript PDF) | [https://doi.org/10.5281/zenodo.19654957](https://doi.org/10.5281/zenodo.19654957) |
+| **Software / Source Code — v1.0** (model artefacts, Streamlit app, code) | [https://doi.org/10.5281/zenodo.19654957](https://doi.org/10.5281/zenodo.19654957) |
+| **Research Paper — Initial Release** (full IEEE-style manuscript PDF) |  [https://doi.org/10.5281/zenodo.19654767](https://doi.org/10.5281/zenodo.19654767) |
 
 ---
 
@@ -183,24 +183,6 @@ CervixNet-Ensemble/
 
 ---
 
-## Edit README on GitHub — No Terminal Needed
-
-You can update this README directly in your browser at any time:
-
-**Step 1** — Go to: `https://github.com/Aghawafaabbass/CervixNet-Ensemble`
-
-**Step 2** — Click `README.md` in the file list.
-
-**Step 3** — Click the **pencil icon ✏️** (top-right of the file view).
-
-**Step 4** — Edit the Markdown content in the browser editor.
-
-**Step 5** — Scroll down → "Commit changes" → add a short message → "Commit changes".
-
-Your changes go live immediately. No terminal, no Colab, no tools required.
-
----
-
 ## Run in Google Colab and Push to GitHub
 
 Use this workflow to retrain the model, run experiments, or update files, then push back to GitHub.
@@ -296,8 +278,8 @@ This work is formally archived on Zenodo with two separate citable records:
 
 | Record | DOI | What it contains |
 |--------|-----|-----------------|
-| **Software v1.0** | [10.5281/zenodo.19654767](https://doi.org/10.5281/zenodo.19654767) | Source code, trained model `.pkl` artefacts, Streamlit app |
-| **Research Paper** | [10.5281/zenodo.19654957](https://doi.org/10.5281/zenodo.19654957) | Full IEEE-style research paper (PDF) |
+| **Software v1.0** | [10.5281/zenodo.19654957](https://doi.org/10.5281/zenodo.19654957) | Source code, trained model `.pkl` artefacts, Streamlit app |
+| **Research Paper**  | [10.5281/zenodo.19654767](https://doi.org/10.5281/zenodo.19654767) | Full IEEE-style research paper (PDF) |
 
 ---
 
@@ -311,8 +293,8 @@ This work is formally archived on Zenodo with two separate citable records:
   version   = {1.0},
   year      = {2026},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.19654767},
-  url       = {https://doi.org/10.5281/zenodo.19654767}
+  doi       = {10.5281/zenodo.19654957},
+  url       = {https://doi.org/10.5281/zenodo.19654957}
 }
 ```
 
@@ -327,8 +309,8 @@ This work is formally archived on Zenodo with two separate citable records:
                Leveraging Multi-Modal Behavioral and Clinical Predictors},
   year      = {2026},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.19654957},
-  url       = {https://doi.org/10.5281/zenodo.19654957}
+  doi       = {10.5281/zenodo.19654767},
+  url       = {https://doi.org/10.5281/zenodo.19654767}
 }
 ```
 
